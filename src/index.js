@@ -29,9 +29,9 @@ class KeyBoard extends React.Component {
 	render() {
 		return (
 			<input
-				className='kb'
+				id='location'
 				ref='sb'
-				type='search'
+				type='text'
 				onKeyUp={(e) => this.edit(e)}
 				placeholder='Add drill...'
 			/>
@@ -112,6 +112,10 @@ class RoadMap extends React.Component {
 		}
 		const drill = this.state.drills[s]
 		return drill.name
+	}
+
+	isEmpty() {
+		return this.state.drills.length <= 0
 	}
 
 	render() {
@@ -222,10 +226,15 @@ class Face extends React.Component {
 //export default Face
 
 class App extends React.Component {
+	//use state instead
 	togglePlay() {
-		if(this.refs.play.value == 'Play'){
+		if(this.refs.play.value == 'Play' && !this.map.isEmpty()){
 			this.map.launch(0)
 			this.refs.play.value = 'Stop'
+		}
+		else {
+			//this.map.abort()
+			this.refs.play.value = 'Play'
 		}
 		//hide search bar
 		//turn start to abort
@@ -241,7 +250,6 @@ class App extends React.Component {
 					<input
 						ref='play'
 						type='button'
-						className='play'
 						onClick={() => this.togglePlay()}
 						value='Play'
 						display='none'
