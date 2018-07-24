@@ -1,0 +1,25 @@
+body {
+	background: black;
+}
+canvas {
+	background: black;
+
+}
+text {
+	color: white;
+}
+p {
+	color: white;
+}
+
+.watch {
+	padding: 20px;
+	margin:auto;
+	width: 500px;
+}
+
+.play {
+	width: 25%;
+	font-size: 36px;
+	float: right;
+}
