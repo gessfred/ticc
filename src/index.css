@@ -12,14 +12,39 @@ p {
 	color: white;
 }
 
+.navbar {
+	overflow: hidden;
+    background-color: cyan;
+		bottom: 0;
+		left: 0;
+		position: fixed;
+		width: 100%;
+		height: 50px;
+		vertical-align: middle;
+}
+
+.navbar input[type='search'] {
+	float: right;
+    border: none;
+    margin-right: 16px;
+		right: 20%;
+		position: relative;
+}
+
+.navbar input[type='button'] {
+	left: 40%;
+	position: absolute;
+	width: 10%;
+}
+
+.mapDrill {
+	padding: 10px;
+	text-align: center;
+	font-size: 36px;
+	color: white;
+}
 .watch {
 	padding: 20px;
 	margin:auto;
 	width: 500px;
-}
-
-.play {
-	width: 25%;
-	font-size: 36px;
-	float: right;
 }

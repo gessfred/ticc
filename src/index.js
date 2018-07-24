@@ -28,7 +28,13 @@ class KeyBoard extends React.Component {
 
 	render() {
 		return (
-			<input ref='sb' type='search' onKeyUp={(e) => this.edit(e)}/>
+			<input
+				className='kb'
+				ref='sb'
+				type='search'
+				onKeyUp={(e) => this.edit(e)}
+				placeholder='Add drill...'
+			/>
 		)
 	}
 }
@@ -101,9 +107,11 @@ class RoadMap extends React.Component {
 
 	toString() {
 		const l = this.state.drills.length, s = this.state.selected
-		if(l == 0 || s < 0) return ''
+		if(l == 0 || s < 0) {
+			return '--'
+		}
 		const drill = this.state.drills[s]
-		return drill.name + ':' + drill.duration
+		return drill.name
 	}
 
 	render() {
@@ -115,7 +123,7 @@ class RoadMap extends React.Component {
 					onClick={(e) => this.select(e)}
 					onMouseMove={(e) => this.hovered(e)}
 				/>
-				<p>{this.toString()}</p>
+				<h1 className='mapDrill' ref='title'>{this.toString()}</h1>
 			</div>
 
 		)
@@ -198,7 +206,14 @@ class Face extends React.Component {
 	render() {
 		return (
 		//	<div className="watch" onScroll={(e) => console.log('ok')}>
-				<canvas ref='canvas' width={this.state.size} height={this.state.size}/>
+				<canvas
+					ref='canvas'
+					width={this.state.size}
+					height={this.state.size}
+					onKeyUp={(e) => console.log('ok')}
+					onScroll={(e) => console.log(e)}
+					autoFocus
+				/>
 		//	</div>
 		)
 	}
@@ -207,8 +222,11 @@ class Face extends React.Component {
 //export default Face
 
 class App extends React.Component {
-	launch() {
-		this.map.launch(0)
+	togglePlay() {
+		if(this.refs.play.value == 'Play'){
+			this.map.launch(0)
+			this.refs.play.value = 'Stop'
+		}
 		//hide search bar
 		//turn start to abort
 	}
@@ -218,11 +236,17 @@ class App extends React.Component {
 			<div className='watch'>
 				<Face ref={(face) => this.face = face} time={60} size={500}/>
 				<RoadMap ref={(map) => this.map = map} start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
-				<KeyBoard className='kb' callback={(drill) => this.map.add(drill)} time={() => this.face.time()}/>
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-				<button className='play' onClick={() => this.launch()}>
-					<i class="fa fa-play"/>
-				</button>
+				<div className='navbar'>
+					<KeyBoard callback={(drill) => this.map.add(drill)} time={() => this.face.time()}/>
+					<input
+						ref='play'
+						type='button'
+						className='play'
+						onClick={() => this.togglePlay()}
+						value='Play'
+						display='none'
+					/>
+				</div>
 			</div>
     );
   }
