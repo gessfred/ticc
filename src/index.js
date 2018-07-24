@@ -36,9 +36,12 @@ class KeyBoard extends React.Component {
 class RoadMap extends React.Component {
 	constructor(props) {
 		super(props)
+		this.w = 3
+		this.offset = 2
 		this.state = {
 			drills: [],
-			selected: -1
+			selected: -1,
+			hovered: -1
 		}
 	}
 
@@ -48,15 +51,36 @@ class RoadMap extends React.Component {
 		this.setState({drills: updated})
 	}
 
+	toX(i) {
+		return 0.5 * this.props.width + (i - this.state.drills.length/2) * (this.w + this.offset)
+	}
+
+	toI(x) {
+		const l = this.state.drills.length
+		const temp = Math.floor(-l/2 + (x - 0.5*this.props.width)/(this.w + this.offset)) + l
+		return temp < 0 || temp >= l ? -1 : temp
+	}
+
+	select(e) {
+		const index = this.toI(e.clientX - this.refs.map.offsetLeft)
+		this.setState({selected: index})
+	}
+
+	hovered(e) {
+		const index = this.toI(e.clientX - this.refs.map.offsetLeft)
+		this.setState({hovered: index})
+	}
+
 	draw() {
-		const drills = this.state.drills
-		const width = this.props.width, offset = 2
-		const w = width / drills.length - offset
 		const drawer = this.refs.map.getContext('2d')
 		drawer.save()
-		drawer.clearRect(0, 0, width, this.props.height)
+		drawer.clearRect(0, 0, this.props.width, this.props.height)
 		drawer.fillStyle='white'
-		drills.forEach((x, i) => drawer.fillRect(i * (w + offset), 0, w, 45))
+		const sel = this.state.selected, hov = this.state.hovered
+		this.state.drills.forEach((x, i) => {
+			drawer.fillStyle = i == sel ? 'white' : (i == hov ? 'darkgray' : 'gray')
+			drawer.fillRect(this.toX(i), 0, this.w, 45)
+		})
 		drawer.restore()
 	}
 
@@ -85,7 +109,12 @@ class RoadMap extends React.Component {
 	render() {
 		return (
 			<div>
-				<canvas ref='map' width={this.props.width} height={this.props.height}/>
+				<canvas
+					ref='map' width={this.props.width}
+					height={this.props.height}
+					onClick={(e) => this.select(e)}
+					onMouseMove={(e) => this.hovered(e)}
+				/>
 				<p>{this.toString()}</p>
 			</div>
 
