@@ -13,10 +13,18 @@ class Face extends React.Component {
 		this.state = {
 			currentTime: -1,
 			time: props.time,
-			edited: false,
+			editable: false,
 			size: props.size,
-			aborted: false
+			aborted: false,
+			timeHover: -1,
+			editing: false
 		}
+		//*********Make Constant
+		this.offset = 10
+		this.wide=3
+		this.height = 40
+		//eventListeners
+		//eventually this.timer
 	}
 
 	componentDidMount() {
@@ -27,42 +35,55 @@ class Face extends React.Component {
 		this.draw()
 	}
 
-	draw() {
-		const time = this.state.time, current = this.state.currentTime
-		const res = resolution(time)
-		const drawer = this.refs.canvas.getContext('2d')
-		const radius = this.state.size / 2
-		const offset = 10
-		const wide=3
-		const height = 40
-		drawer.save()
-		drawer.clearRect(0, 0, this.state.size, this.state.size)
-		drawer.translate(radius, radius)
+	drawNeedle(drawer) {
+		const current = this.state.currentTime
+		if(current >= 0) {
+			const y = this.state.size/3
+			drawer.rotate((2 * current * Math.PI)/this.state.time)
+			drawer.fillStyle = 'orange'
+			drawer.fillRect(0 - this.wide/2,  - y - this.height/2, this.wide, this.height)
+			drawer.strokeStyle = 'orange'
+			drawer.lineWidth = 2
+			drawer.beginPath()
+			drawer.ellipse(0, -y - this.height/2, 4, 4, 0, 0, 2 * Math.PI)
+			drawer.stroke()
+		}
+	}
+
+	drawTime(drawer) {
+		const current = this.state.currentTime
 		drawer.fillStyle = 'white'
 		drawer.font = "bold 22pt Calibri,Geneva,Arial"
 		drawer.textAlign = 'center'
-		drawer.fillText(current < 0 ? time : Math.floor(current), 0, 25 - radius)
-		drawer.fillStyle = "gray"
-		const y = radius * 4/6//3 / 5
+		drawer.fillText(current < 0 ? this.state.time : Math.floor(current), 0, 25 - this.state.size / 2)
+	}
+
+	drawTicks(drawer) {
+		const time = this.state.time
+		const res = resolution(time), y = this.state.size /3
 		for(var i=0, c=false, width=2; i < time; ++i) {
 			width = (c = i % res._2 == 0) ? 2 : ((c = i % res._1 == 0) ? 0.5 : -1)
 			if(c) {
 				drawer.fillStyle = (width == 2) ? 'white' : 'gray'
-				const adjust = (width == 2 ? offset : 0)
+				const adjust = (width == 2 ? this.offset : 0)
 				drawer.fillRect(0, y - adjust, width, 20 + adjust)
 				drawer.rotate(res._1 * (2 * Math.PI)/time)
 			}
 		}
-		if(current >= 0) {
-			drawer.rotate((2 * current * Math.PI)/time)
-			drawer.fillStyle = 'orange'
-			drawer.fillRect(0 - wide/2,  - y - height/2, wide, height)
-			drawer.strokeStyle = 'orange'
-			drawer.lineWidth = 2
-			drawer.beginPath()
-			drawer.ellipse(0, -y - height/2, 4, 4, 0, 0, 2 * Math.PI)
-			drawer.stroke()
-		}
+	}
+
+	draw() {
+		const time = this.state.time, current = this.state.currentTime
+		const drawer = this.refs.canvas.getContext('2d')
+		const radius = this.state.size / 2
+		drawer.save()
+		drawer.clearRect(0, 0, this.state.size, this.state.size)
+		drawer.translate(radius, radius)
+		this.drawTime(drawer)
+		drawer.fillStyle = "gray"
+		//3 / 5
+		this.drawTicks(drawer)
+		this.drawNeedle(drawer)
 		drawer.restore()
 
 	}
@@ -76,8 +97,12 @@ class Face extends React.Component {
 		}
 	}
 
+	isEditable(editable) {
+		this.setState({editable: editable})
+	}
+
 	abort() {
-		this.setState({aborted:true})
+		this.setState({aborted:true, editable: true})
 	}
 
 	time() {
@@ -86,16 +111,16 @@ class Face extends React.Component {
 
 	render() {
 		return (
-		//	<div className="watch" onScroll={(e) => console.log('ok')}>
-				<canvas
-					ref='canvas'
-					width={this.state.size}
-					height={this.state.size}
-					onKeyUp={(e) => console.log('ok')}
-					onScroll={(e) => console.log(e)}
-					autoFocus
-				/>
-		//	</div>
+			<div>
+					<canvas
+						ref='canvas'
+						width={this.state.size}
+						height={this.state.size}
+						onKeyUp={(e) => console.log('ok')}
+						onScroll={(e) => console.log(e)}
+						autoFocus
+					/>
+			</div>
 		)
 	}
 }

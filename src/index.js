@@ -31,24 +31,33 @@ class KeyBoard extends React.Component {
 				type='text'
 				onKeyUp={(e) => this.edit(e)}
 				placeholder='Add drill...'
+				disabled={this.props.disabled}
 			/>
 		)
 	}
 }
 
 class App extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			playing: false
+		}
+	}
 	//use state instead
-	togglePlay() {
-		if(this.refs.play.value == 'Play' && !this.map.isEmpty()){
-			this.map.launch(0)
-			this.refs.play.value = 'Stop'
+	toggle() {
+		if(!this.state.playing){
+			if(!this.map.isEmpty()) {
+				this.map.launch(0)
+				this.face.isEditable(false)
+			}
 		}
 		else {
 			//Find better solution
 			this.map.abort()
 			this.face.abort()
-			this.refs.play.value = 'Play'
 		}
+		this.setState({playing: !this.state.playing})
 		//hide search bar
 		//turn start to abort
 	}
@@ -59,12 +68,12 @@ class App extends React.Component {
 				<Face ref={(face) => this.face = face} time={60} size={500}/>
 				<RoadMap ref={(map) => this.map = map} start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
 				<div className='navbar'>
-					<KeyBoard callback={(drill) => this.map.add(drill)} time={() => this.face.time()}/>
+					<KeyBoard callback={(drill) => this.map.add(drill)} time={() => this.face.time()} disabled={this.state.playing}/>
 					<input
 						ref='play'
 						type='button'
-						onClick={() => this.togglePlay()}
-						value='Play'
+						onClick={() => this.toggle()}
+						value={this.state.playing ? 'Stop' : 'Play'}
 						display='none'
 					/>
 				</div>
