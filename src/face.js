@@ -54,12 +54,18 @@ class Face extends React.Component {
 		}
 	}
 
+	toDMS(time) {
+		const min = Math.floor(time/60), sec = Math.floor(time % 60)
+		return (time > 60 ? (min + ':') : '') + sec + '.' + 10*(time - (60*min + sec))
+	}
+
 	drawTime(drawer) {
 		const current = this.state.currentTime
 		drawer.fillStyle = 'white'
 		drawer.font = "bold 22pt Calibri,Geneva,Arial"
 		drawer.textAlign = 'center'
-		drawer.fillText(current < 0 ? this.state.time : current, 0, 25 - this.state.size / 2)
+		const contextTime = current < 0 ? this.state.time : current
+		drawer.fillText(this.toDMS(contextTime), 0, 25 - this.state.size / 2)
 	}
 
 	drawTicks(drawer) {
