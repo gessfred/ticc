@@ -4,6 +4,25 @@ import './index.css';
 import RoadMap from './roadmap.js'
 import Face from './face.js'
 
+function save(name, content) {
+	localStorage.setItem('')
+}
+
+function retrieve() {
+	localStorage.getItem('user')
+}
+
+function retrieve(name) {
+
+}
+
+var drill = (name, duration) => {
+	return {
+		name: name,
+		duration: duration
+	}
+}
+
 class Drill {
 	constructor(name, duration) {
 		this.name = name
@@ -14,7 +33,7 @@ class Drill {
 class KeyBoard extends React.Component {
 	edit(e) {
 		if(e.keyCode == 13) {
-			this.props.callback(new Drill(this.refs.sb.value, this.props.time()))
+			this.props.callback(drill(this.refs.sb.value, this.props.time()))
 		}
 	}
 

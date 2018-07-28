@@ -1,6 +1,10 @@
 import React from 'react';
 import './index.css'
 
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+}
+
 class RoadMap extends React.Component {
 	constructor(props) {
 		super(props)
@@ -46,9 +50,13 @@ class RoadMap extends React.Component {
 		drawer.clearRect(0, 0, this.props.width, this.props.height)
 		drawer.fillStyle='white'
 		const sel = this.state.selected, hov = this.state.hovered
+		const h = this.props.height - 10
+		const timescale = this.state.drills.map(x => x.duration).max()
 		this.state.drills.forEach((x, i) => {
 			drawer.fillStyle = i == sel ? 'white' : (i == hov ? 'darkgray' : 'gray')
-			drawer.fillRect(this.toX(i), 0, this.w, 45)
+			const l=h*x.duration / timescale + 10
+			console.log((h - l)/2)
+			drawer.fillRect(this.toX(i), (h - l)/2 + 5, this.w, l)
 		})
 		drawer.restore()
 	}
