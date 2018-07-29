@@ -5,18 +5,17 @@ import Face from '../components/face.js'
 
 function dump() {
 	let keys = []
-	for(let i = 0; i < localStorage.length; ++i)
+	for(let i = 0; i < window.localStorage.length; ++i)
 		keys.push(localStorage.key(i))
-	console.log(keys)
 	return keys
 }
 
 function save(name, content) {
-		localStorage.setItem(name, JSON.stringify(content))
+		window.localStorage.setItem(name, JSON.stringify(content))
 }
 
 function get(name) {
-	const tmp = JSON.parse(localStorage.getItem(name))
+	const tmp = JSON.parse(window.localStorage.getItem(name))
 	return tmp
 }
 
