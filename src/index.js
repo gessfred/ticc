@@ -4,16 +4,21 @@ import './index.css';
 import RoadMap from './roadmap.js'
 import Face from './face.js'
 
+function dump() {
+	let keys = []
+	for(let i = 0; i < localStorage.length; ++i)
+		keys.push(localStorage.key(i))
+	console.log(keys)
+	return keys
+}
+
 function save(name, content) {
-	localStorage.setItem('')
+		localStorage.setItem(name, JSON.stringify(content))
 }
 
-function retrieve() {
-	localStorage.getItem('user')
-}
-
-function retrieve(name) {
-
+function get(name) {
+	const tmp = JSON.parse(localStorage.getItem(name))
+	return tmp
 }
 
 var drill = (name, duration) => {
@@ -55,7 +60,8 @@ class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			playing: false
+			playing: false,
+			db: []
 		}
 	}
 	//use state instead
@@ -76,13 +82,30 @@ class App extends React.Component {
 		//turn start to abort
 	}
 
+	workoutLink(x) {
+		return <input value={x} type='button' onClick={(e) => this.map.init(get(x))}/>
+	}
+
+	//should local storage be part of the state?
   render() {
     return (
 			<div className='watch'>
 				<Face ref={(face) => this.face = face} time={600} size={500}/>
 				<RoadMap ref={(map) => this.map = map} start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
 				<div className='navbar'>
+					<div class="dropup">
+				   <button class="dropbtn">Saved</button>
+				   <div class="dropup-content">
+				     {dump().map((x) => this.workoutLink(x))}
+				   </div>
+				 </div>
 					<KeyBoard callback={(drill) => this.map.add(drill)} time={() => this.face.timeSelected()} disabled={this.state.playing}/>
+					<input type='button'
+						onClick={(e) => save(prompt('Workout name', 'untitled' + localStorage.length), this.map.state.drills)}
+						value='Save'
+						disabled={this.state.playing}
+					/>
+
 					<input
 						ref='play'
 						type='button'
@@ -90,12 +113,21 @@ class App extends React.Component {
 						value={this.state.playing ? 'Stop' : 'Play'}
 						display='none'
 					/>
+
 				</div>
 			</div>
     );
   }
 }
+/*
 
+<div className='dropup'>
+	<button className="dropbtn">Dropdown</button>
+	<div className="dropup-content">
+		{dump().map((n) => {this.workoutLink(n)})}
+	</div>
+</div>
+*/
 // ========================================
 
 ReactDOM.render(

@@ -18,6 +18,10 @@ class RoadMap extends React.Component {
 		}
 	}
 
+	init(drills) {
+		this.setState({drills: drills})
+	}
+
 	add(drill) {
 		var updated = this.state.drills.slice()
 		updated.push(drill)
@@ -55,7 +59,6 @@ class RoadMap extends React.Component {
 		this.state.drills.forEach((x, i) => {
 			drawer.fillStyle = i == sel ? 'white' : (i == hov ? 'darkgray' : 'gray')
 			const l=h*x.duration / timescale + 10
-			console.log((h - l)/2)
 			drawer.fillRect(this.toX(i), (h - l)/2 + 5, this.w, l)
 		})
 		drawer.restore()
@@ -95,6 +98,20 @@ class RoadMap extends React.Component {
 		return this.state.drills.length <= 0
 	}
 
+	dump() {
+		console.log('ok')
+		console.log(this.state.drills)
+		return this.state.drills
+	}
+
+	removeSelected() {
+		if(this.state.selected >= 0) {
+			const removed = this.state.drills
+			removed.splice(this.state.selected, 1)
+			this.setState({drills: removed, selected: -1})
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -104,7 +121,15 @@ class RoadMap extends React.Component {
 					onClick={(e) => this.select(e)}
 					onMouseMove={(e) => this.hovered(e)}
 				/>
-				<h1 className='mapDrill' ref='title'>{this.toString()}</h1>
+				<div className='info'>
+					<h1 className='mapDrill' ref='title'>{this.toString()}</h1>
+					<input
+						type='button'
+						value='X'
+						onClick={(e) => this.removeSelected()}
+						className='clearbutton'
+					/>
+				</div>
 			</div>
 
 		)
