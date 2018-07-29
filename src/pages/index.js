@@ -92,9 +92,9 @@ class App extends React.Component {
 				<Face ref={(face) => this.face = face} time={600} size={500}/>
 				<RoadMap ref={(map) => this.map = map} start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
 				<div className='navbar'>
-					<div class="dropup">
-				   <button class="dropbtn">Saved</button>
-				   <div class="dropup-content">
+					<div className="dropup">
+				   <button className="dropbtn">Saved</button>
+				   <div className="dropup-content">
 				     {dump().map((x) => this.workoutLink(x))}
 				   </div>
 				 </div>
