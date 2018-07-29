@@ -1,5 +1,5 @@
 import React from 'react'
-import './index.css'
+import '../pages/index.css'
 
 function resolution(time) {
 	if(time <= 60) {return {_1: 1, _2: 5}}

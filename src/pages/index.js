@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import RoadMap from './roadmap.js'
-import Face from './face.js'
+import RoadMap from '../components/roadmap.js'
+import Face from '../components/face.js'
 
 function dump() {
 	let keys = []
@@ -119,18 +118,4 @@ class App extends React.Component {
     );
   }
 }
-/*
-
-<div className='dropup'>
-	<button className="dropbtn">Dropdown</button>
-	<div className="dropup-content">
-		{dump().map((n) => {this.workoutLink(n)})}
-	</div>
-</div>
-*/
-// ========================================
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+export default App

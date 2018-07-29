@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css'
+import '../pages/index.css'
 
 Array.prototype.max = function() {
   return Math.max.apply(null, this);
