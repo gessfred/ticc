@@ -3,22 +3,6 @@ import './index.css';
 import RoadMap from '../components/roadmap.js'
 import Face from '../components/face.js'
 
-function dump() {
-	let keys = []
-	for(let i = 0; i < window.localStorage.length; ++i)
-		keys.push(localStorage.key(i))
-	return keys
-}
-
-function save(name, content) {
-		window.localStorage.setItem(name, JSON.stringify(content))
-}
-
-function get(name) {
-	const tmp = JSON.parse(window.localStorage.getItem(name))
-	return tmp
-}
-
 var drill = (name, duration) => {
 	return {
 		name: name,
@@ -62,6 +46,24 @@ class App extends React.Component {
 			db: []
 		}
 	}
+
+
+	dump() {
+		let keys = []
+		for(let i = 0; i < window.localStorage.length; ++i)
+			keys.push(localStorage.key(i))
+		return keys
+	}
+
+	save(name, content) {
+			window.localStorage.setItem(name, JSON.stringify(content))
+	}
+
+	get(name) {
+		const tmp = JSON.parse(window.localStorage.getItem(name))
+		return tmp
+	}
+
 	//use state instead
 	toggle() {
 		if(!this.state.playing){
@@ -81,7 +83,7 @@ class App extends React.Component {
 	}
 
 	workoutLink(x) {
-		return <input value={x} type='button' onClick={(e) => this.map.init(get(x))}/>
+		return <input value={x} type='button' onClick={(e) => this.map.init(this.get(x))}/>
 	}
 
 	//should local storage be part of the state?
@@ -94,16 +96,19 @@ class App extends React.Component {
 					<div className="dropup">
 				   <button className="dropbtn">Saved</button>
 				   <div className="dropup-content">
-				     {dump().map((x) => this.workoutLink(x))}
+				     {this.dump().map((x) => this.workoutLink(x))}
 				   </div>
 				 </div>
-					<KeyBoard callback={(drill) => this.map.add(drill)} time={() => this.face.timeSelected()} disabled={this.state.playing}/>
+					<KeyBoard
+						callback={(drill) => this.map.add(drill)}
+						time={() => this.face.timeSelected()}
+						disabled={this.state.playing}
+					/>
 					<input type='button'
-						onClick={(e) => save(prompt('Workout name', 'untitled' + localStorage.length), this.map.state.drills)}
+						onClick={(e) => this.save(prompt('Workout name', 'untitled' + window.localStorage.length), this.map.state.drills)}
 						value='Save'
 						disabled={this.state.playing}
 					/>
-
 					<input
 						ref='play'
 						type='button'
