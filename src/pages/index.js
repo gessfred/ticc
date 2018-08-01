@@ -43,25 +43,31 @@ class App extends React.Component {
 		super(props)
 		this.state = {
 			playing: false,
-			db: []
+			saved: {}
 		}
 	}
 
+	componentDidMount() {
+		this.window = window
+	}
 
 	dump() {
-		let keys = []
-		for(let i = 0; i < window.localStorage.length; ++i)
-			keys.push(localStorage.key(i))
+		var keys = []
+		for(var key in this.state.saved) {
+			keys.push(key)
+			console.log(key)
+		}
 		return keys
 	}
 
 	save(name, content) {
-			window.localStorage.setItem(name, JSON.stringify(content))
+			const copy = this.state.saved //unnecessary?
+			copy[name] = content
+			this.setState({saved: copy})
 	}
 
 	get(name) {
-		const tmp = JSON.parse(window.localStorage.getItem(name))
-		return tmp
+		return this.state.saved[name]
 	}
 
 	//use state instead
@@ -105,7 +111,7 @@ class App extends React.Component {
 						disabled={this.state.playing}
 					/>
 					<input type='button'
-						onClick={(e) => this.save(prompt('Workout name', 'untitled' + window.localStorage.length), this.map.state.drills)}
+						onClick={(e) => this.save(prompt('Workout name', 'untitled' + this.window.localStorage.length), this.map.state.drills)}
 						value='Save'
 						disabled={this.state.playing}
 					/>
