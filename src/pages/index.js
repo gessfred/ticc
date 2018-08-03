@@ -51,7 +51,8 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.get()
+		console.log('didmount')
+		this.setState({saved: this.get()})
 	}
 
 	componentDidUpdate() {
