@@ -43,31 +43,35 @@ class App extends React.Component {
 		super(props)
 		this.state = {
 			playing: false,
-			saved: {}
+			saved: {},
+			savedNames: []
 		}
 	}
 
-	componentDidMount() {
-		this.window = window
+	componentDidUpdate() {
+		console.log('mount')
+		if(this.callstack) {
+			this.callstack()
+			this.callstack = null
+		}
 	}
 
 	dump() {
 		var keys = []
-		for(var key in this.state.saved) {
-			keys.push(key)
-			console.log(key)
-		}
+		for(let i = 0; i < 1; ++i)
+			keys.push(localStorage.key(i))
+			console.log('keys ' + keys)
 		return keys
 	}
 
 	save(name, content) {
-			const copy = this.state.saved //unnecessary?
-			copy[name] = content
-			this.setState({saved: copy})
+		localStorage.setItem(name, JSON.stringify(content))
+		this.setState({savedNames: this.dump(), saved: this.dump().map((x) => this.get(x))}) //unefficient
 	}
 
 	get(name) {
-		return this.state.saved[name]
+		const tmp = JSON.parse(localStorage.getItem(name))
+		return tmp
 	}
 
 	//use state instead
@@ -102,7 +106,10 @@ class App extends React.Component {
 					<div className="dropup">
 				   <button className="dropbtn">Saved</button>
 				   <div className="dropup-content">
-				     {this.dump().map((x) => this.workoutLink(x))}
+				     {this.state.savedNames.map((x) => <input value={x} type='button' onClick={(e) => {
+							 console.log(this.state.saved[0])
+							 this.map.init(this.state.saved[0])
+						 }}/>)}
 				   </div>
 				 </div>
 					<KeyBoard
@@ -111,7 +118,10 @@ class App extends React.Component {
 						disabled={this.state.playing}
 					/>
 					<input type='button'
-						onClick={(e) => this.save(prompt('Workout name', 'untitled' + this.window.localStorage.length), this.map.state.drills)}
+						onClick={(e) => {
+							this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
+							this.forceUpdate() //instead use shouldComponentUpdate
+						}}
 						value='Save'
 						disabled={this.state.playing}
 					/>
