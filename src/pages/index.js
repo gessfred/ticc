@@ -3,6 +3,9 @@ import './index.css';
 import RoadMap from '../components/roadmap.js'
 import Face from '../components/face.js'
 
+const n = 'n'
+const user = 'localuser'
+
 var drill = (name, duration) => {
 	return {
 		name: name,
@@ -43,9 +46,12 @@ class App extends React.Component {
 		super(props)
 		this.state = {
 			playing: false,
-			saved: {},
-			savedNames: []
+			saved: {}
 		}
+	}
+
+	componentDidMount() {
+		this.get()
 	}
 
 	componentDidUpdate() {
@@ -58,19 +64,21 @@ class App extends React.Component {
 
 	dump() {
 		var keys = []
-		for(let i = 0; i < 1; ++i)
-			keys.push(localStorage.key(i))
-			console.log('keys ' + keys)
+		for(var key in this.state.saved)
+			keys.push(key)
 		return keys
 	}
 
 	save(name, content) {
-		localStorage.setItem(name, JSON.stringify(content))
-		this.setState({savedNames: this.dump(), saved: this.dump().map((x) => this.get(x))}) //unefficient
+		const saved = Object.assign(this.state.saved, {})
+		saved[name] = content
+		this.setState({saved: saved})
+		localStorage.setItem('localuser', JSON.stringify(this.state.saved))
+		//this.setState({saved: }) //unefficient
 	}
 
-	get(name) {
-		const tmp = JSON.parse(localStorage.getItem(name))
+	get() {
+		const tmp = JSON.parse(localStorage.getItem('localuser'))
 		return tmp
 	}
 
@@ -93,9 +101,15 @@ class App extends React.Component {
 	}
 
 	workoutLink(x) {
-		return <input value={x} type='button' onClick={(e) => this.map.init(this.get(x))}/>
+		return <input value={x} type='button' onClick={(e) => this.map.init(this.state.saved[x])}/>
 	}
+/*
+{this.state.savedNames.map((x) => <input value={x} type='button' onClick={(e) => {
+	console.log(this.state.saved[0])
+	this.map.init(this.state.saved[0])
+}}/>)}
 
+*/
 	//should local storage be part of the state?
   render() {
     return (
@@ -106,10 +120,7 @@ class App extends React.Component {
 					<div className="dropup">
 				   <button className="dropbtn">Saved</button>
 				   <div className="dropup-content">
-				     {this.state.savedNames.map((x) => <input value={x} type='button' onClick={(e) => {
-							 console.log(this.state.saved[0])
-							 this.map.init(this.state.saved[0])
-						 }}/>)}
+						 {this.dump().map((x) => this.workoutLink(x))}
 				   </div>
 				 </div>
 					<KeyBoard
