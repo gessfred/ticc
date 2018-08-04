@@ -6,6 +6,14 @@ Array.prototype.max = function() {
   return Math.max.apply(null, this);
 }
 
+function bip(sound) {
+	sound.play()
+	sound.addEventListener('ended', function() {
+		console.log('reloading...')
+		sound.load()
+	})
+}
+
 class RoadMap extends React.Component {
 	constructor(props) {
 		super(props)
@@ -74,7 +82,7 @@ class RoadMap extends React.Component {
 	launch(i) {
 		if(!this.state.aborted && i < this.state.drills.length) {
 			console.log('beeping...')
-			this.beep()
+			bip(this.a)
 			this.props.start(this.state.drills[i].duration, () => this.launch(i + 1))
 			this.setState({selected: i})
 		}
