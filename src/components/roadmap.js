@@ -1,6 +1,7 @@
 import React from 'react';
 import '../pages/index.css'
 
+
 Array.prototype.max = function() {
   return Math.max.apply(null, this);
 }
@@ -16,6 +17,8 @@ class RoadMap extends React.Component {
 			hovered: -1,
 			aborted: false
 		}
+		this.a = new Audio('http://soundbible.com/grab.php?id=1815&type=mp3')
+		this.beep = this.playbeep.bind(this)
 	}
 
 	init(drills) {
@@ -64,8 +67,14 @@ class RoadMap extends React.Component {
 		drawer.restore()
 	}
 
+	playbeep() {
+		this.a.play()
+	}
+
 	launch(i) {
 		if(!this.state.aborted && i < this.state.drills.length) {
+			console.log('beeping...')
+			this.beep()
 			this.props.start(this.state.drills[i].duration, () => this.launch(i + 1))
 			this.setState({selected: i})
 		}
@@ -130,6 +139,7 @@ class RoadMap extends React.Component {
 						className='clearbutton'
 					/>
 				</div>
+				<audio><source src='http://soundbible.com/grab.php?id=1815&type=mp3' /></audio>
 			</div>
 
 		)
