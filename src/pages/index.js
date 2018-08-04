@@ -104,6 +104,9 @@ class App extends React.Component {
 	workoutLink(x) {
 		return <input value={x} type='button' onClick={(e) => this.map.init(this.state.saved[x])}/>
 	}
+	stop() {
+		this.setState({playing: false})
+	}
 /*
 {this.state.savedNames.map((x) => <input value={x} type='button' onClick={(e) => {
 	console.log(this.state.saved[0])
@@ -116,7 +119,7 @@ class App extends React.Component {
     return (
 			<div className='watch'>
 				<Face ref={(face) => this.face = face} time={600} size={500}/>
-				<RoadMap ref={(map) => this.map = map} start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
+				<RoadMap ref={(map) => this.map = map} stop={() => this.stop()}start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
 				<div className='navbar'>
 					<div className="dropup">
 				   <button className="dropbtn">Saved</button>

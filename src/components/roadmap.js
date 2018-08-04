@@ -78,7 +78,10 @@ class RoadMap extends React.Component {
 			this.props.start(this.state.drills[i].duration, () => this.launch(i + 1))
 			this.setState({selected: i})
 		}
-		else this.setState({aborted:false})
+		else {
+			this.setState({aborted:false})
+			this.props.stop()
+		}
 	}
 
 	abort() {
