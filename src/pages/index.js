@@ -129,31 +129,31 @@ class App extends React.Component {
 						disabled={this.state.playing}
 					/>
 				</div>
-				<div className='navbar'>
+					<div className='controls'>
+						<input type='button'
+							onClick={(e) => {
+								this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
+								this.forceUpdate() //instead use shouldComponentUpdate
+							}}
+							value='★'
+							disabled={this.state.playing}
+							className='control'
+						/>
+						<input
+							ref='play'
+							type='button'
+							onClick={() => this.toggle()}
+							value={this.state.playing ? '◽' : '▶'}
+							display='none'
+							className='control'
+						/>
+					</div>
 					<div className="dropup">
 				   <button className="dropbtn">Saved</button>
 				   <div className="dropup-content">
 						 {this.dump().map((x) => this.workoutLink(x))}
 				   </div>
 				 	</div>
-
-					<input type='button'
-						onClick={(e) => {
-							this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
-							this.forceUpdate() //instead use shouldComponentUpdate
-						}}
-						value='Save'
-						disabled={this.state.playing}
-					/>
-					<input
-						ref='play'
-						type='button'
-						onClick={() => this.toggle()}
-						value={this.state.playing ? 'Stop' : 'Play'}
-						display='none'
-					/>
-
-				</div>
 			</div>
     );
   }

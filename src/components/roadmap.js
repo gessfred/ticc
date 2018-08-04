@@ -146,6 +146,7 @@ class RoadMap extends React.Component {
 					height={this.props.height}
 					onClick={(e) => this.select(e)}
 					onMouseMove={(e) => this.hovered(e)}
+					className='roadmap'
 				/>
 				<input
 					ref='title'
