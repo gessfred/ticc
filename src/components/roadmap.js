@@ -26,8 +26,6 @@ class RoadMap extends React.Component {
 			aborted: false,
 			clearable: false
 		}
-		this.a = new Audio('http://soundbible.com/grab.php?id=1815&type=mp3')
-		this.beep = this.playbeep.bind(this)
 	}
 
 	init(drills) {
@@ -83,7 +81,7 @@ class RoadMap extends React.Component {
 	launch(i) {
 		if(!this.state.aborted && i < this.state.drills.length) {
 			console.log('beeping...')
-			bip(this.a)
+			bip(this.refs.beep)
 			this.props.start(this.state.drills[i].duration, () => this.launch(i + 1))
 			this.setState({selected: i})
 		}
@@ -157,6 +155,7 @@ class RoadMap extends React.Component {
 					onMouseLeave={(e) => this.clearable(false)}
 					className='selected'
 				/>
+				<audio src='http://soundbible.com/grab.php?id=1815&type=mp3' ref='beep'/>
 			</div>
 
 		)
