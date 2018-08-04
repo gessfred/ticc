@@ -23,7 +23,8 @@ class RoadMap extends React.Component {
 			drills: [],
 			selected: -1,
 			hovered: -1,
-			aborted: false
+			aborted: false,
+			clearable: false
 		}
 		this.a = new Audio('http://soundbible.com/grab.php?id=1815&type=mp3')
 		this.beep = this.playbeep.bind(this)
@@ -111,7 +112,7 @@ class RoadMap extends React.Component {
 			return '--'
 		}
 		const drill = this.state.drills[s]
-		return drill.name
+		return this.state.clearable ? 'Clear' : drill.name
 	}
 
 	isEmpty() {
@@ -132,6 +133,11 @@ class RoadMap extends React.Component {
 		}
 	}
 
+	clearable(yes) {
+		this.refs.title.background = 'red'
+		this.setState({clearable: yes})
+	}
+
 	render() {
 		return (
 			<div>
@@ -141,16 +147,15 @@ class RoadMap extends React.Component {
 					onClick={(e) => this.select(e)}
 					onMouseMove={(e) => this.hovered(e)}
 				/>
-				<div className='info'>
-					<h1 className='mapDrill' ref='title'>{this.toString()}</h1>
-					<input
-						type='button'
-						value='X'
-						onClick={(e) => this.removeSelected()}
-						className='clearbutton'
-					/>
-				</div>
-				<audio><source src='http://soundbible.com/grab.php?id=1815&type=mp3' /></audio>
+				<input
+					ref='title'
+					type='button'
+					value={this.toString()}
+					onClick={(e) => this.removeSelected()}
+					onMouseMove={(e) => this.clearable(true)}
+					onMouseLeave={(e) => this.clearable(false)}
+					className='selected'
+				/>
 			</div>
 
 		)

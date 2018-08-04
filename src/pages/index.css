@@ -15,26 +15,26 @@ p {
 	color: white;
 }
 
+.app {
+	background: black;
+}
+
 .navbar {
 		bottom: 0;
 		left: 0;
 		position: fixed;
 		width: 100%;
-		background-color: #36454F;
 }
 
-.navbar input[type='text'] {
-/*	margin-top: 20px;
-	margin-bottom: 20px;*/
-	font-size: 40px;
-  outline: none;
-  width: 200px;
-  height: 60px;
-  display: table-cell;
-  vertical-align: middle;
-	left: 20%;
-	position: relative;
-	background-color: #36454F;
+.keyboard {
+	width: 250px;
+	height: 25px;
+	font-size: 100%;
+	margin: auto;
+	display: block;
+	text-align: center;
+	border-radius: 3px;
+
 }
 
 
@@ -126,7 +126,24 @@ p {
 	width: 80%;
 }
 .watch {
-	padding: 20px;
-	margin:auto;
-	width: 500px;
+	width: 400px;
+	display: block;
+	margin: auto;
+}
+
+.selected {
+	background-color: black;
+	color: white;
+	border: none;
+	width: 200px;
+	height: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	display: block;
+	border-radius: 10px;
+}
+
+.selected:hover {
+	background-color: red;
 }

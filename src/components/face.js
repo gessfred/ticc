@@ -177,6 +177,7 @@ class Face extends React.Component {
 		return (
 			<div>
 					<canvas
+						className='watch'
 						ref='canvas'
 						width={this.state.size}
 						height={this.state.size}

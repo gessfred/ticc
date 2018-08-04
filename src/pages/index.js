@@ -20,6 +20,7 @@ class Drill {
 	}
 }
 
+
 class KeyBoard extends React.Component {
 	edit(e) {
 		if(e.keyCode == 13) {
@@ -35,6 +36,7 @@ class KeyBoard extends React.Component {
 				type='text'
 				onKeyUp={(e) => this.edit(e)}
 				placeholder='Add drill...'
+				className='keyboard'
 				disabled={this.props.disabled}
 			/>
 		)
@@ -117,21 +119,24 @@ class App extends React.Component {
 	//should local storage be part of the state?
   render() {
     return (
-			<div className='watch'>
-				<Face ref={(face) => this.face = face} time={600} size={500}/>
+			<div className='app'>
+				<Face ref={(face) => this.face = face} time={600} size={400}/>
 				<RoadMap ref={(map) => this.map = map} stop={() => this.stop()}start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
+				<div>
+					<KeyBoard
+						callback={(drill) => this.map.add(drill)}
+						time={() => this.face.timeSelected()}
+						disabled={this.state.playing}
+					/>
+				</div>
 				<div className='navbar'>
 					<div className="dropup">
 				   <button className="dropbtn">Saved</button>
 				   <div className="dropup-content">
 						 {this.dump().map((x) => this.workoutLink(x))}
 				   </div>
-				 </div>
-					<KeyBoard
-						callback={(drill) => this.map.add(drill)}
-						time={() => this.face.timeSelected()}
-						disabled={this.state.playing}
-					/>
+				 	</div>
+
 					<input type='button'
 						onClick={(e) => {
 							this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
