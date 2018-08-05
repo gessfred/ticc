@@ -5,24 +5,24 @@
       "jsonName": "dev-404-page.json",
       "internalComponentName": "ComponentDev404Page",
       "path": "/dev-404-page/",
-      "component": "/Users/fredericgessler/Documents/tick/.cache/dev-404-page.js",
+      "component": "/Users/fredericgessler/Documents/frontend/ticc/.cache/dev-404-page.js",
       "componentChunkName": "component---cache-dev-404-page-js",
       "context": {},
       "pluginCreator___NODE": "Plugin dev-404-page",
       "pluginCreatorId": "Plugin dev-404-page",
-      "componentPath": "/Users/fredericgessler/Documents/tick/.cache/dev-404-page.js",
+      "componentPath": "/Users/fredericgessler/Documents/frontend/ticc/.cache/dev-404-page.js",
       "id": "SitePage /dev-404-page/",
       "parent": "SOURCE",
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "c5d68d2289b2a22d4e218c587fc77c30",
+        "contentDigest": "a1158adc6e54ce1a5f42aa8a3d1422e0",
         "description": "Plugin dev-404-page",
         "owner": "internal-data-bridge"
       }
     },
     "Plugin dev-404-page": {
-      "resolve": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/dev-404-page",
+      "resolve": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/dev-404-page",
       "id": "Plugin dev-404-page",
       "name": "dev-404-page",
       "version": "1.0.0",
@@ -34,7 +34,7 @@
       ],
       "browserAPIs": [],
       "ssrAPIs": [],
-      "pluginFilepath": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/dev-404-page",
+      "pluginFilepath": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/dev-404-page",
       "packageJson": {
         "name": "dev-404-page",
         "description": "Internal plugin to add a 404 page in development with helpful information",
@@ -51,13 +51,13 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "8b9ad1210cb8f4862239569a183777c0",
+        "contentDigest": "b2a778274ec396f7eb95ce9c5e55eceb",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
     },
     "Plugin component-layout-creator": {
-      "resolve": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/component-layout-creator",
+      "resolve": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/component-layout-creator",
       "id": "Plugin component-layout-creator",
       "name": "component-layout-creator",
       "version": "1.0.0",
@@ -69,7 +69,7 @@
       ],
       "browserAPIs": [],
       "ssrAPIs": [],
-      "pluginFilepath": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/component-layout-creator",
+      "pluginFilepath": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/component-layout-creator",
       "packageJson": {
         "name": "component-layout-creator",
         "description": "An internal Gatsby plugin that creates pages from component files in src/layouts",
@@ -90,13 +90,13 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "32f02a3f7cd07c08150b30d3da118165",
+        "contentDigest": "9178c77b552e46314cd4a6aeb901814a",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
     },
     "Plugin internal-data-bridge": {
-      "resolve": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/internal-data-bridge",
+      "resolve": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/internal-data-bridge",
       "id": "Plugin internal-data-bridge",
       "name": "internal-data-bridge",
       "version": "1.0.0",
@@ -109,7 +109,7 @@
       ],
       "browserAPIs": [],
       "ssrAPIs": [],
-      "pluginFilepath": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/internal-data-bridge",
+      "pluginFilepath": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/internal-data-bridge",
       "packageJson": {
         "name": "internal-data-bridge",
         "description": "An internal Gatsby plugin which creates data nodes from internal data",
@@ -126,13 +126,13 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "32904599f7b69eac082cb5c778976322",
+        "contentDigest": "c18d38634e1258b4c505cfa4bfd99f7e",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
     },
     "Plugin prod-404": {
-      "resolve": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/prod-404",
+      "resolve": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/prod-404",
       "id": "Plugin prod-404",
       "name": "prod-404",
       "version": "1.0.0",
@@ -144,7 +144,7 @@
       ],
       "browserAPIs": [],
       "ssrAPIs": [],
-      "pluginFilepath": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/prod-404",
+      "pluginFilepath": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/prod-404",
       "packageJson": {
         "name": "prod-404",
         "description": "Internal plugin to detect various flavors of 404 pages and ensure there's a 404.html path created as well to ensure compatability with static hosts",
@@ -161,13 +161,13 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "1f485ce4c668b044597ee7a3ae19042a",
+        "contentDigest": "89c95cd448e1888fbcbdfb11602e41ef",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
     },
     "Plugin query-runner": {
-      "resolve": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/query-runner",
+      "resolve": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/query-runner",
       "id": "Plugin query-runner",
       "name": "query-runner",
       "version": "1.0.0",
@@ -180,7 +180,7 @@
       ],
       "browserAPIs": [],
       "ssrAPIs": [],
-      "pluginFilepath": "/Users/fredericgessler/Documents/tick/node_modules/gatsby/dist/internal-plugins/query-runner",
+      "pluginFilepath": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby/dist/internal-plugins/query-runner",
       "packageJson": {
         "name": "query-runner",
         "description": "Internal plugin for running queries",
@@ -197,23 +197,100 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "6ec4a190c578df93136bcd8ce064b149",
+        "contentDigest": "3a3fc0d487d7498b5d1700d61540cb7f",
+        "type": "SitePlugin",
+        "owner": "internal-data-bridge"
+      }
+    },
+    "Plugin gatsby-plugin-react-helmet": {
+      "resolve": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby-plugin-react-helmet",
+      "id": "Plugin gatsby-plugin-react-helmet",
+      "name": "gatsby-plugin-react-helmet",
+      "version": "2.0.11",
+      "pluginOptions": {
+        "plugins": []
+      },
+      "nodeAPIs": [],
+      "browserAPIs": [],
+      "ssrAPIs": [
+        "onRenderBody"
+      ],
+      "pluginFilepath": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby-plugin-react-helmet",
+      "packageJson": {
+        "name": "gatsby-plugin-react-helmet",
+        "description": "Manage document head data with react-helmet. Provides drop-in server rendering support for Gatsby.",
+        "version": "2.0.11",
+        "main": "index.js",
+        "keywords": [
+          "gatsby",
+          "gatsby-plugin",
+          "favicon",
+          "react-helmet",
+          "seo",
+          "document",
+          "head",
+          "title",
+          "meta",
+          "link",
+          "script",
+          "base",
+          "noscript",
+          "style"
+        ],
+        "author": {
+          "name": "Kyle Mathews",
+          "email": "matthews.kyle@gmail.com"
+        },
+        "license": "MIT",
+        "dependencies": [
+          {
+            "name": "babel-runtime",
+            "version": "^6.26.0"
+          }
+        ],
+        "devDependencies": [
+          {
+            "name": "babel-cli",
+            "version": "^6.26.0"
+          },
+          {
+            "name": "cross-env",
+            "version": "^5.0.5"
+          }
+        ],
+        "peerDependencies": [
+          {
+            "name": "gatsby",
+            "version": "^1.0.0"
+          },
+          {
+            "name": "react-helmet",
+            "version": ">=5.1.3"
+          }
+        ],
+        "optionalDependecies": [],
+        "bundledDependecies": []
+      },
+      "parent": "SOURCE",
+      "children": [],
+      "internal": {
+        "contentDigest": "7a68b161661d4223df5579bc5db84323",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
     },
     "Plugin default-site-plugin": {
-      "resolve": "/Users/fredericgessler/Documents/tick",
+      "resolve": "/Users/fredericgessler/Documents/frontend/ticc",
       "id": "Plugin default-site-plugin",
       "name": "default-site-plugin",
-      "version": "d41d8cd98f00b204e9800998ecf8427e",
+      "version": "a77c4ad8ddfd7c099694aea8fa852ba5",
       "pluginOptions": {
         "plugins": []
       },
       "nodeAPIs": [],
       "browserAPIs": [],
       "ssrAPIs": [],
-      "pluginFilepath": "/Users/fredericgessler/Documents/tick",
+      "pluginFilepath": "/Users/fredericgessler/Documents/frontend/ticc",
       "packageJson": {
         "name": "gatsby-starter-default",
         "description": "Gatsby default starter",
@@ -254,19 +331,19 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "3b8b647887dc4a0edb496c9c2f814566",
+        "contentDigest": "f19789bd6171362cb49fb78a7748ac50",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
     },
     "Plugin gatsby-plugin-page-creator": {
-      "resolve": "/Users/fredericgessler/Documents/tick/node_modules/gatsby-plugin-page-creator",
+      "resolve": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby-plugin-page-creator",
       "id": "Plugin gatsby-plugin-page-creator",
       "name": "gatsby-plugin-page-creator",
       "version": "1.0.1",
       "pluginOptions": {
         "plugins": [],
-        "path": "/Users/fredericgessler/Documents/tick/src/pages",
+        "path": "/Users/fredericgessler/Documents/frontend/ticc/src/pages",
         "pathCheck": false
       },
       "nodeAPIs": [
@@ -274,7 +351,7 @@
       ],
       "browserAPIs": [],
       "ssrAPIs": [],
-      "pluginFilepath": "/Users/fredericgessler/Documents/tick/node_modules/gatsby-plugin-page-creator",
+      "pluginFilepath": "/Users/fredericgessler/Documents/frontend/ticc/node_modules/gatsby-plugin-page-creator",
       "packageJson": {
         "name": "gatsby-plugin-page-creator",
         "description": "Gatsby plugin that automatically creates pages from React components in specified directories",
@@ -336,7 +413,7 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "7fb52d4bf1f2c0caa70237c82424f04e",
+        "contentDigest": "4b50034d48dba16f1bdaf22a27e15e79",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
@@ -347,12 +424,14 @@
       },
       "port": "8000",
       "host": "localhost",
-      "buildTime": "2018-07-29T19:25:05.251Z",
+      "pathPrefix": "",
+      "polyfill": true,
+      "buildTime": "2018-08-04T23:03:20.255Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "31f39c9f5016832db83d1f8765c60ee8",
+        "contentDigest": "a367bef6801842deb3337e19c15328c3",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
@@ -362,18 +441,18 @@
       "jsonName": "index.json",
       "internalComponentName": "ComponentIndex",
       "path": "/",
-      "component": "/Users/fredericgessler/Documents/tick/src/pages/index.js",
+      "component": "/Users/fredericgessler/Documents/frontend/ticc/src/pages/index.js",
       "componentChunkName": "component---src-pages-index-js",
       "context": {},
       "pluginCreator___NODE": "Plugin gatsby-plugin-page-creator",
       "pluginCreatorId": "Plugin gatsby-plugin-page-creator",
-      "componentPath": "/Users/fredericgessler/Documents/tick/src/pages/index.js",
+      "componentPath": "/Users/fredericgessler/Documents/frontend/ticc/src/pages/index.js",
       "id": "SitePage /",
       "parent": "SOURCE",
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "cb023e7b50152fb1f388257f386134fe",
+        "contentDigest": "b139101f2c243ef287192682c10669b5",
         "description": "Plugin gatsby-plugin-page-creator",
         "owner": "internal-data-bridge"
       }
@@ -381,7 +460,7 @@
   },
   "status": {
     "plugins": {},
-    "PLUGINS_HASH": "64c52f0b386846598fbe91be408a179c"
+    "PLUGINS_HASH": "673643eb1ce4b27a13383d8dd93b20b9"
   },
   "componentDataDependencies": {
     "nodes": {},
