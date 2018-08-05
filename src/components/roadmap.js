@@ -67,7 +67,7 @@ class RoadMap extends React.Component {
 		const h = this.props.height - 10
 		const timescale = this.state.drills.map(x => x.duration).max()
 		this.state.drills.forEach((x, i) => {
-			drawer.fillStyle = i == sel ? '#fffdd0' : (i == hov ? '#525252' : '#d3d3d3')
+			drawer.fillStyle = i == sel ? '#ca2c43' : (i == hov ? '#fffdd0' : '#d3d3d3')
 			const l=h*x.duration / timescale + 10
 			drawer.fillRect(this.toX(i), (h - l)/2 + 5, this.w, l)
 		})
@@ -155,7 +155,7 @@ class RoadMap extends React.Component {
 					onMouseLeave={(e) => this.clearable(false)}
 					className='selected'
 				/>
-				<audio src='http://soundbible.com/grab.php?id=1815&type=mp3' ref='beep'/>
+				<audio src='https://soundbible.com/grab.php?id=1815&type=mp3' ref='beep'/>
 			</div>
 
 		)

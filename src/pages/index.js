@@ -120,7 +120,7 @@ class App extends React.Component {
   render() {
     return (
 			<div className='app'>
-				<Face ref={(face) => this.face = face} time={600} size={400}/>
+				<Face ref={(face) => this.face = face} time={300} size={400}/>
 				<RoadMap ref={(map) => this.map = map} stop={() => this.stop()}start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
 				<div>
 					<KeyBoard

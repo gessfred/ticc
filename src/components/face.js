@@ -96,7 +96,7 @@ class Face extends React.Component {
 
 	drawHoverSelect(drawer) {
 		if(this.state.timeHover >= 0) {
-			drawer.fillStyle = 'rgba(100, 100, 100, 0.5)'
+			drawer.fillStyle = 'rgba(120, 120, 120, 0.5)'
 			this.drawSelection(drawer, this.timeToAngle(this.state.timeHover))
 		}
 	}

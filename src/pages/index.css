@@ -35,6 +35,10 @@ p {
 	text-align: center;
 	border-radius: 3px;
 	margin-bottom: 40px;
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+border-radius: 10px;
 }
 .dropbtn {
     background-color: #ca2c43;
