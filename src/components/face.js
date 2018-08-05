@@ -44,9 +44,9 @@ class Face extends React.Component {
 		if(current >= 0) {
 			const y = this.y()
 			drawer.rotate((2 * current * Math.PI)/this.state.time)
-			drawer.fillStyle = 'orange'
+			drawer.fillStyle = '#ca2c43'
 			drawer.fillRect(0 - this.wide/2,  - y - this.height/2, this.wide, this.height)
-			drawer.strokeStyle = 'orange'
+			drawer.strokeStyle = '#ca2c43'
 			drawer.lineWidth = 2
 			drawer.beginPath()
 			drawer.ellipse(0, -y - this.height/2, 4, 4, 0, 0, 2 * Math.PI)
@@ -54,17 +54,18 @@ class Face extends React.Component {
 		}
 	}
 
+//1 min doesnt work
 	toDMS(time) {
 		const min = Math.floor(time/60), sec = Math.floor(time % 60)
 		return (time > 60 ? (min + ':') : '') + sec + '.' + 10*(time - (60*min + sec))
 	}
 
 	drawTime(drawer) {
-		const current = this.state.currentTime
+		const current = Math.round(this.state.currentTime), hover = Math.round(this.state.timeHover)
 		drawer.fillStyle = 'white'
 		drawer.font = "bold 22pt Calibri,Geneva,Arial"
 		drawer.textAlign = 'center'
-		const contextTime = current < 0 ? this.state.time : current
+		const contextTime = hover < 0 ? (current < 0 ? this.state.time : current) : hover
 		drawer.fillText(this.toDMS(contextTime), 0, 25 - this.state.size / 2)
 	}
 
@@ -88,7 +89,7 @@ class Face extends React.Component {
 
 	drawTimeSelect(drawer) {
 		if(this.state.currentTime >= 0) {
-			drawer.fillStyle = 'orange'
+			drawer.fillStyle = '#ca2c43'
 			this.drawSelection(drawer, this.timeToAngle(this.state.currentTime))
 		}
 	}
@@ -103,7 +104,7 @@ class Face extends React.Component {
 	drawSelection(drawer, angle) {
 		const offset = -Math.PI/2
 		drawer.beginPath()
-		drawer.arc(0,0,100,0 + offset,angle + offset, false)
+		drawer.arc(0,0,this.y(),0 + offset,angle + offset, false)
 		drawer.arc(0,0,0,angle + offset,0 + offset, true)
 		drawer.fill()
 	}

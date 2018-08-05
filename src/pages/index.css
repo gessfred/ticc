@@ -37,7 +37,7 @@ p {
 	margin-bottom: 40px;
 }
 .dropbtn {
-    background-color: orange;
+    background-color: #ca2c43;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -84,7 +84,7 @@ p {
 }
 
 .clearbutton {
-	background-color: orange;
+	background-color: #ca2c43;
     border: none;
 	border-radius: 12px;
 	color: white;
@@ -130,7 +130,7 @@ p {
 }
 
 .selected:hover {
-	background-color: red;
+	background-color: #ca2c43;
 }
 
 .controls {

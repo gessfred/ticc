@@ -67,7 +67,7 @@ class RoadMap extends React.Component {
 		const h = this.props.height - 10
 		const timescale = this.state.drills.map(x => x.duration).max()
 		this.state.drills.forEach((x, i) => {
-			drawer.fillStyle = i == sel ? 'white' : (i == hov ? 'darkgray' : 'gray')
+			drawer.fillStyle = i == sel ? '#fffdd0' : (i == hov ? '#525252' : '#d3d3d3')
 			const l=h*x.duration / timescale + 10
 			drawer.fillRect(this.toX(i), (h - l)/2 + 5, this.w, l)
 		})
@@ -132,7 +132,7 @@ class RoadMap extends React.Component {
 	}
 
 	clearable(yes) {
-		this.refs.title.background = 'red'
+		this.refs.title.background = '#ca2c43'
 		this.setState({clearable: yes})
 	}
 
