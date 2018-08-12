@@ -1,5 +1,6 @@
 import React from 'react'
 import '../pages/index.css'
+const {toDMS} = require('../util/util')
 
 function resolution(time) {
 	if(time <= 60) {return {_1: 1, _2: 5}}
@@ -55,10 +56,7 @@ class Face extends React.Component {
 	}
 
 //1 min doesnt work
-	toDMS(time) {
-		const min = Math.floor(time/60), sec = Math.floor(time % 60)
-		return (time > 60 ? (min + ':') : '') + sec + '.' + 10*(time - (60*min + sec))
-	}
+
 
 	drawTime(drawer) {
 		const current = Math.round(this.state.currentTime), hover = Math.round(this.state.timeHover)
@@ -66,7 +64,7 @@ class Face extends React.Component {
 		drawer.font = "bold 22pt Calibri,Geneva,Arial"
 		drawer.textAlign = 'center'
 		const contextTime = hover < 0 ? (current < 0 ? this.state.time : current) : hover
-		drawer.fillText(this.toDMS(contextTime), 0, 25 - this.state.size / 2)
+		drawer.fillText(toDMS(contextTime), 0, 25 - this.state.size / 2)
 	}
 
 	drawTicks(drawer) {
