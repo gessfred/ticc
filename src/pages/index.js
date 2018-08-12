@@ -48,18 +48,20 @@ class App extends React.Component {
 		super(props)
 		this.state = {
 			playing: false,
-			saved: {}
+			saved: {},
+			menu: true
 		}
 	}
 
 	componentDidMount() {
 		console.log('didmount')
-		this.setState({saved: this.get()})
+		this.setState({saved: this.get() || {}})
 	}
 
 	componentDidUpdate() {
 		console.log('mount')
 		if(this.callstack) {
+			console.log(this.get())
 			this.callstack()
 			this.callstack = null
 		}
@@ -73,6 +75,8 @@ class App extends React.Component {
 	}
 
 	save(name, content) {
+		console.log(this.state.saved)
+		console.log({})
 		const saved = Object.assign(this.state.saved, {})
 		saved[name] = content
 		this.setState({saved: saved})
@@ -120,40 +124,40 @@ class App extends React.Component {
   render() {
     return (
 			<div className='app'>
-				<Face ref={(face) => this.face = face} time={300} size={400}/>
-				<RoadMap ref={(map) => this.map = map} stop={() => this.stop()}start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
-				<div>
-					<KeyBoard
-						callback={(drill) => this.map.add(drill)}
-						time={() => this.face.timeSelected()}
-						disabled={this.state.playing}
-					/>
+				<div className={this.state.menu ? 'sidebar' : 'sidebar-closed'}>
+					{this.dump().map((x) => this.workoutLink(x))}
 				</div>
-					<div className='controls'>
-						<input type='button'
-							onClick={(e) => {
-								this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
-								this.forceUpdate() //instead use shouldComponentUpdate
-							}}
-							value='★'
+				<div className={this.state.menu ? 'main' : 'main-closed'}>
+					<input className='menu' type='button' value={this.state.menu ? 'x' : 'menu'} onClick={(e) => this.setState({menu: !this.state.menu})}/>
+					<Face ref={(face) => this.face = face} time={300} size={400}/>
+					<RoadMap ref={(map) => this.map = map} stop={() => this.stop()}start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
+					<div>
+						<KeyBoard
+							callback={(drill) => this.map.add(drill)}
+							time={() => this.face.timeSelected()}
 							disabled={this.state.playing}
-							className='control'
-						/>
-						<input
-							ref='play'
-							type='button'
-							onClick={() => this.toggle()}
-							value={this.state.playing ? '◽' : '▶'}
-							display='none'
-							className='control'
 						/>
 					</div>
-					<div className="dropup">
-				   <button className="dropbtn">Saved</button>
-				   <div className="dropup-content">
-						 {this.dump().map((x) => this.workoutLink(x))}
-				   </div>
-				 	</div>
+						<div className='controls'>
+							<input type='button'
+								onClick={(e) => {
+									this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
+									this.forceUpdate() //instead use shouldComponentUpdate
+								}}
+								value='★'
+								disabled={this.state.playing}
+								className='control'
+							/>
+							<input
+								ref='play'
+								type='button'
+								onClick={() => this.toggle()}
+								value={this.state.playing ? '◽' : '▶'}
+								display='none'
+								className='control'
+							/>
+						</div>
+				</div>
 			</div>
     );
   }
