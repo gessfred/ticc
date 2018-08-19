@@ -108,7 +108,7 @@ class App extends React.Component {
 	}
 
 	workoutLink(x) {
-		return <input value={x} type='button' onClick={(e) => this.map.init(this.state.saved[x])}/>
+		return <input value={x} className='link' type='button' onClick={(e) => this.map.init(this.state.saved[x])}/>
 	}
 	stop() {
 		this.setState({playing: false})

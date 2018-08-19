@@ -107,8 +107,8 @@ class RoadMap extends React.Component {
 	toString() {
 		const l = this.state.drills.length, s = this.state.selected
 		if(l == 0 || s < 0) {
-			const totalTime = toDMS(this.state.drills.map((x) => x.duration).reduce((prev, x) => prev + x))
-			return (l) ? 'Total Time : ' + totalTime : '--'
+			return (l) ? 'Total Time : ' +  toDMS(this.state.drills.map((x) => x.duration).reduce((prev, x) => prev + x)) : '--'
+
 		}
 		const drill = this.state.drills[s]
 		return this.state.clearable ? 'Clear' : drill.name
