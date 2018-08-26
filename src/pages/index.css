@@ -56,6 +56,11 @@ p {
 .app {
 	display: inline;
 	background: black;
+	top: 0;
+	left: 0;
+	margin: none;
+	width: 100%;
+	position: fixed;
 }
 
 .navbar {
@@ -69,15 +74,13 @@ p {
 	width: 250px;
 	height: 25px;
 	font-size: 100%;
-	margin: auto;
-	display: block;
 	text-align: center;
-	border-radius: 3px;
-	margin-bottom: 16px;
 	background-color: black;
 	color: white;
 	border: 1px solid white;
-border-radius: 10px;
+	border-radius: 10px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .dropbtn {
     background-color: #ca2c43;
@@ -120,6 +123,15 @@ border-radius: 10px;
 /* Show the dropup menu on hover */
 .dropup:hover .dropup-content {
     display: block;
+}
+
+.topnav {
+	width: 100%;
+	background: gray;
+	height: 40px;
+	top: 0;
+	left: 0;
+	margin: none;
 }
 
 .namebar {
@@ -176,26 +188,19 @@ border-radius: 10px;
 	background-color: #ca2c43;
 }
 
-.controls {
-	width: 100px;
-	margin: auto;
-	display: block;
-}
 
-.control {
+.play {
 	background-color: black;
 	color: white;
-	padding: 20px;
 	width: 50px;
 	height: 50px;
 	font-size: 100%;
 	text-align: center;
 	margin: auto;
-	display: inline;
 	border: none;
 }
 
-.menu {
+.menu, .topnavsave {
 	width: 60px;
 	height: 40px;
 	background: #ca2c43;
@@ -203,6 +208,10 @@ border-radius: 10px;
 	color: white;
 	font-size: 100%;
 	padding: 8px;
+}
+
+.topnavsave {
+	float: right;
 }
 
 .menu:hover {

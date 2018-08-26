@@ -143,42 +143,42 @@ class App extends React.Component {
 					{this.dump().map((x) => this.workoutLink(x))}
 				</div>
 				<div className={this.state.menu ? 'main' : 'main-closed'}>
-					<button className='menu' onClick={(e) => this.setState({menu: !this.state.menu})}>
-						<FontAwesomeIcon icon={this.state.menu ? faTimesCircle : faBars}/>
-					</button>
-					<Face ref={(face) => this.face = face} time={300} size={400}/>
-					<Picker dpick={(i) => this.setState({pause: i})} pick={this.state.pause}/>
-					<RoadMap ref={(map) => this.map = map} stop={() => this.stop()} start={(t, c) => this.face.start(t, c)} count={(c, cb) => this.face.count(c, cb)} width={500} height={50}/>
-					<div>
+					<div className='topnav'>
+						<button className='menu' onClick={(e) => this.setState({menu: !this.state.menu})}>
+							<FontAwesomeIcon icon={this.state.menu ? faTimesCircle : faBars}/>
+						</button>
 						<KeyBoard
 							callback={(drill) => this.map.add(drill)}
 							time={() => this.face.timeSelected()}
 							pauseTime={() => this.state.pause}
 							disabled={this.state.playing}
 						/>
+						<button
+							onClick={(e) => {
+								this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
+								this.forceUpdate() //instead use shouldComponentUpdate
+							}}
+							disabled={this.state.playing}
+							className='topnavsave'
+							>
+							<FontAwesomeIcon icon={faSave}/>
+						</button>
 					</div>
-						<div className='controls'>
 
-							<button
-								onClick={(e) => {
-									this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
-									this.forceUpdate() //instead use shouldComponentUpdate
-								}}
-								disabled={this.state.playing}
-								className='control'
-								>
-								<FontAwesomeIcon icon={faSave}/>
-							</button>
+					<Face ref={(face) => this.face = face} time={300} size={400}/>
+					<Picker dpick={(i) => this.setState({pause: i})} pick={this.state.pause}/>
+					<RoadMap ref={(map) => this.map = map} stop={() => this.stop()} start={(t, c) => this.face.start(t, c)} count={(c, cb) => this.face.count(c, cb)} width={500} height={50}/>
+
+
 
 							<button
 								ref='play'
 								onClick={() => this.toggle()}
 								display='none'
-								className='control'
+								className='play'
 								>
 								<FontAwesomeIcon icon={this.state.playing ? faStop : faPlay} />
 							</button>
-						</div>
 				</div>
 			</div>
     );
