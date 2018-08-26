@@ -84,9 +84,9 @@ class RoadMap extends React.Component {
 
 	launch(i) {
 		if(!this.state.aborted && i < this.state.drills.length) {
-			if(i == 0) //countdown
 			bip(this.refs.beep)
-			this.props.start(this.state.drills[i].duration, () => this.launch(i + 1))
+			const drill = this.state.drills[i]
+			this.props.start(drill.duration, () => this.countdown(drill.pause, () => this.launch(i + 1)))
 			this.setState({selected: i})
 		}
 		else {
@@ -96,8 +96,7 @@ class RoadMap extends React.Component {
 	}
 
 	countdown(count, callback) {
-		if(count > 0) {
-			console.log(count + ' and counting...')
+		if(count > 0 && !this.state.aborted) {
 			bip(this.refs.beep)
 			this.props.count(count, () => this.countdown(count - 1, callback))
 		}
