@@ -144,7 +144,7 @@ class App extends React.Component {
 				</div>
 				<div className={this.state.menu ? 'main' : 'main-closed'}>
 					<button className='menu' onClick={(e) => this.setState({menu: !this.state.menu})}>
-						<FontAwesomeIcon icon={this.state.menu ? faTimesCircle : faBars}/> 
+						<FontAwesomeIcon icon={this.state.menu ? faTimesCircle : faBars}/>
 					</button>
 					<Face ref={(face) => this.face = face} time={300} size={400}/>
 					<Picker dpick={(i) => this.setState({pause: i})} pick={this.state.pause}/>

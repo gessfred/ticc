@@ -65,7 +65,7 @@ class Face extends React.Component {
 		drawer.font = "bold 22pt Calibri,Geneva,Arial"
 		drawer.textAlign = 'center'
 		const contextTime = hover < 0 ? (current < 0 ? this.state.time : current) : hover
-		drawer.fillText(toDMS(contextTime), 0, 25 - this.state.size / 2)
+		drawer.fillText(toDMS(contextTime), 0, 0)
 	}
 
 	drawCount(drawer) {
@@ -113,6 +113,10 @@ class Face extends React.Component {
 		drawer.arc(0,0,this.y(),0 + offset,angle + offset, false)
 		drawer.arc(0,0,0,angle + offset,0 + offset, true)
 		drawer.fill()
+		drawer.beginPath()
+		drawer.fillStyle = 'black'
+		drawer.arc(0, 0, 50, 0, Math.PI * 2, true)
+		drawer.fill()
 	}
 
 	draw() {
@@ -122,7 +126,7 @@ class Face extends React.Component {
 		drawer.save()
 		drawer.clearRect(0, 0, this.state.size, this.state.size)
 		drawer.translate(radius, radius)
-		this.drawTime(drawer)
+
 		drawer.fillStyle = "gray"
 		//3 / 5
 		this.drawTicks(drawer)
@@ -131,9 +135,12 @@ class Face extends React.Component {
 			this.drawHoverSelect(drawer)
 		}
 		else if(this.state.count < 0) {
+			drawer.save()
 			this.drawNeedle(drawer)
+			drawer.restore()
 		}
 		else this.drawCount(drawer)
+		if(this.state.count < 0) this.drawTime(drawer)
 		drawer.restore()
 
 	}
