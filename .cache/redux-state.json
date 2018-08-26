@@ -16,7 +16,7 @@
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "a1158adc6e54ce1a5f42aa8a3d1422e0",
+        "contentDigest": "9e507ea56afce2d188be35465b9440ba",
         "description": "Plugin dev-404-page",
         "owner": "internal-data-bridge"
       }
@@ -426,12 +426,12 @@
       "host": "localhost",
       "pathPrefix": "",
       "polyfill": true,
-      "buildTime": "2018-08-04T23:03:20.255Z",
+      "buildTime": "2018-08-26T21:13:22.292Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "a367bef6801842deb3337e19c15328c3",
+        "contentDigest": "fc83395163afa3e905ac4a9382149471",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
@@ -452,7 +452,7 @@
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "b139101f2c243ef287192682c10669b5",
+        "contentDigest": "48118b5e4f522ddde076aec0be7232b5",
         "description": "Plugin gatsby-plugin-page-creator",
         "owner": "internal-data-bridge"
       }
