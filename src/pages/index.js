@@ -3,6 +3,11 @@ import './index.css';
 import RoadMap from '../components/roadmap.js'
 import Face from '../components/face.js'
 import {toDMS} from '../util/util.js'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay, faStop, faSave, faTimesCircle, faBars } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faPlay)
 
 const n = 'n'
 const user = 'localuser'
@@ -138,7 +143,9 @@ class App extends React.Component {
 					{this.dump().map((x) => this.workoutLink(x))}
 				</div>
 				<div className={this.state.menu ? 'main' : 'main-closed'}>
-					<input className='menu' type='button' value={this.state.menu ? 'x' : 'menu'} onClick={(e) => this.setState({menu: !this.state.menu})}/>
+					<button className='menu' onClick={(e) => this.setState({menu: !this.state.menu})}>
+						<FontAwesomeIcon icon={this.state.menu ? faTimesCircle : faBars}/> 
+					</button>
 					<Face ref={(face) => this.face = face} time={300} size={400}/>
 					<Picker dpick={(i) => this.setState({pause: i})} pick={this.state.pause}/>
 					<RoadMap ref={(map) => this.map = map} stop={() => this.stop()} start={(t, c) => this.face.start(t, c)} count={(c, cb) => this.face.count(c, cb)} width={500} height={50}/>
@@ -151,23 +158,26 @@ class App extends React.Component {
 						/>
 					</div>
 						<div className='controls'>
-							<input type='button'
+
+							<button
 								onClick={(e) => {
 									this.callstack = () => this.save(prompt('Workout name', 'untitled'), this.map.state.drills)
 									this.forceUpdate() //instead use shouldComponentUpdate
 								}}
-								value='★'
 								disabled={this.state.playing}
 								className='control'
-							/>
-							<input
+								>
+								<FontAwesomeIcon icon={faSave}/>
+							</button>
+
+							<button
 								ref='play'
-								type='button'
 								onClick={() => this.toggle()}
-								value={this.state.playing ? '◽' : '▶'}
 								display='none'
 								className='control'
-							/>
+								>
+								<FontAwesomeIcon icon={this.state.playing ? faStop : faPlay} />
+							</button>
 						</div>
 				</div>
 			</div>
