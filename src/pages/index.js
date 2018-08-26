@@ -109,7 +109,7 @@ class App extends React.Component {
 	toggle() {
 		if(!this.state.playing){
 			if(!this.map.isEmpty()) {
-				this.map.launch(0)
+				this.map.start()
 				this.face.isEditable(false)
 			}
 		}
@@ -130,13 +130,6 @@ class App extends React.Component {
 	stop() {
 		this.setState({playing: false})
 	}
-/*
-{this.state.savedNames.map((x) => <input value={x} type='button' onClick={(e) => {
-	console.log(this.state.saved[0])
-	this.map.init(this.state.saved[0])
-}}/>)}
-
-*/
 	//should local storage be part of the state?
   render() {
     return (
@@ -148,7 +141,7 @@ class App extends React.Component {
 					<input className='menu' type='button' value={this.state.menu ? 'x' : 'menu'} onClick={(e) => this.setState({menu: !this.state.menu})}/>
 					<Face ref={(face) => this.face = face} time={300} size={400}/>
 					<Picker dpick={(i) => this.setState({pause: i})} pick={this.state.pause}/>
-					<RoadMap ref={(map) => this.map = map} stop={() => this.stop()}start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
+					<RoadMap ref={(map) => this.map = map} stop={() => this.stop()} start={(t, c) => this.face.start(t, c)} count={(c, cb) => this.face.count(c, cb)} width={500} height={50}/>
 					<div>
 						<KeyBoard
 							callback={(drill) => this.map.add(drill)}

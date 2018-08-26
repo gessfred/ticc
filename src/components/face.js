@@ -18,7 +18,8 @@ class Face extends React.Component {
 			size: props.size,
 			aborted: false,
 			timeHover: -1,
-			editing: false
+			editing: false,
+			count: -1
 		}
 		//*********Make Constant
 		this.offset = 10
@@ -65,6 +66,13 @@ class Face extends React.Component {
 		drawer.textAlign = 'center'
 		const contextTime = hover < 0 ? (current < 0 ? this.state.time : current) : hover
 		drawer.fillText(toDMS(contextTime), 0, 25 - this.state.size / 2)
+	}
+
+	drawCount(drawer) {
+		drawer.fillStyle = 'white'
+		drawer.font = "bold 36pt Calibri,Geneva,Arial"
+		drawer.textAlign = 'center'
+		drawer.fillText(this.state.count, 0, 0)
 	}
 
 	drawTicks(drawer) {
@@ -122,13 +130,23 @@ class Face extends React.Component {
 			this.drawTimeSelect(drawer)
 			this.drawHoverSelect(drawer)
 		}
-		else this.drawNeedle(drawer)
+		else if(this.state.count < 0) {
+			this.drawNeedle(drawer)
+		}
+		else this.drawCount(drawer)
 		drawer.restore()
 
 	}
 
+	count(count, callback) {
+		this.setState({count: count, currentTime: -1})
+		setTimeout(() => {
+			this.setState({count: -1})
+			callback()
+		}, 1000)
+	}
+
 	start(time, callback) {
-		console.log('time' + time)
 		this.setState({time: time})
 		this.execute(time, callback)
 	}

@@ -73,7 +73,7 @@ p {
 	display: block;
 	text-align: center;
 	border-radius: 3px;
-	margin-bottom: 40px;
+	margin-bottom: 16px;
 	background-color: black;
 	color: white;
 	border: 1px solid white;
@@ -166,7 +166,7 @@ border-radius: 10px;
 	font-size: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 20px;
+	margin-bottom: 16px;
 	margin-top: 30px;
 	display: block;
 	border-radius: 6px;
@@ -216,12 +216,16 @@ border-radius: 10px;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+	margin-bottom: 5px;
 }
 
 .pick, .picked {
 	height: 40px;
 	width: 50px;
+	font-size: 13px;
 	display: inline;
+	color: #fffdd0;
+	font-weight: 100;
 }
 
 .pick {
@@ -230,7 +234,7 @@ border-radius: 10px;
 }
 
 .pick:hover {
-	border: 3px solid ;
+	border: 3px solid black;
 }
 
 .picked {
