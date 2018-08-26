@@ -60,7 +60,7 @@ class Face extends React.Component {
 
 
 	drawTime(drawer) {
-		const current = Math.round(this.state.currentTime), hover = Math.round(this.state.timeHover)
+		const current = this.state.currentTime, hover = this.state.timeHover
 		drawer.fillStyle = 'white'
 		drawer.font = "bold 22pt Calibri,Geneva,Arial"
 		drawer.textAlign = 'center'
