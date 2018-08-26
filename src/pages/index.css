@@ -208,3 +208,33 @@ border-radius: 10px;
 .menu:hover {
 	background-color: gray;
 }
+
+.picker {
+	height: 40px;
+	width: 300px;
+	background: white;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.pick, .picked {
+	height: 40px;
+	width: 50px;
+	display: inline;
+}
+
+.pick {
+	border: none;
+	background: gray;
+}
+
+.pick:hover {
+	border: 3px solid ;
+}
+
+.picked {
+	border: 4px solid black;
+
+	background: #ca2c43;
+}

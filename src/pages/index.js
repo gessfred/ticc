@@ -2,29 +2,44 @@ import React from 'react';
 import './index.css';
 import RoadMap from '../components/roadmap.js'
 import Face from '../components/face.js'
+import {toDMS} from '../util/util.js'
 
 const n = 'n'
 const user = 'localuser'
+const breaks = [0, 5, 10, 30, 60, 120]
 
-var drill = (name, duration) => {
+var drill = (name, duration, pause) => {
 	return {
 		name: name,
-		duration: duration
+		duration: duration,
+		pause: pause
 	}
 }
 
 class Drill {
-	constructor(name, duration) {
+	constructor(name, duration, pause) {
 		this.name = name
 		this.duration = duration
+		this.pause = pause
 	}
 }
 
+const Pick = (props) => (
+	<button onClick={() => props.dpick()} className={props.on === 'y' ? 'picked' : 'pick'}>{props.t ? props.t : 'None'}</button>
+)
+
+const Picker = function(props) {
+	return (
+		<div className='picker'>
+			{breaks.map((x, i) => <Pick on={i == props.pick ? 'y' : null} t={x > 0 ? toDMS(x) : null} dpick={() => props.dpick(i)}/>)}
+		</div>
+	)
+}
 
 class KeyBoard extends React.Component {
 	edit(e) {
 		if(e.keyCode == 13) {
-			this.props.callback(drill(this.refs.sb.value, this.props.time()))
+			this.props.callback(drill(this.refs.sb.value, this.props.time(),  breaks[this.props.pauseTime()]))
 		}
 	}
 
@@ -49,7 +64,8 @@ class App extends React.Component {
 		this.state = {
 			playing: false,
 			saved: {},
-			menu: true
+			menu: true,
+			pause: 0
 		}
 	}
 
@@ -110,6 +126,7 @@ class App extends React.Component {
 	workoutLink(x) {
 		return <input value={x} className='link' type='button' onClick={(e) => this.map.init(this.state.saved[x])}/>
 	}
+
 	stop() {
 		this.setState({playing: false})
 	}
@@ -130,11 +147,13 @@ class App extends React.Component {
 				<div className={this.state.menu ? 'main' : 'main-closed'}>
 					<input className='menu' type='button' value={this.state.menu ? 'x' : 'menu'} onClick={(e) => this.setState({menu: !this.state.menu})}/>
 					<Face ref={(face) => this.face = face} time={300} size={400}/>
+					<Picker dpick={(i) => this.setState({pause: i})} pick={this.state.pause}/>
 					<RoadMap ref={(map) => this.map = map} stop={() => this.stop()}start={(t, c) => this.face.start(t, c)} width={500} height={50}/>
 					<div>
 						<KeyBoard
 							callback={(drill) => this.map.add(drill)}
 							time={() => this.face.timeSelected()}
+							pauseTime={() => this.state.pause}
 							disabled={this.state.playing}
 						/>
 					</div>
