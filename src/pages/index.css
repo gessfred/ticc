@@ -155,7 +155,6 @@ p {
 	margin: auto;
 	border: none;
 	display: block;
-	cursor: pointer;
 }
 
 .play:hover {
@@ -238,9 +237,12 @@ p {
 .nowState, .state {
 	font-weight: bold;
 	font-family: 'VAG Rounded';/*Verdana*/
-
 	height: 50px;
 	text-align: center;
 	margin: auto;
 	display: inline-block;
+}
+
+.play, .menu, .topnavsave, .pick, .selected {
+	cursor: pointer;
 }
