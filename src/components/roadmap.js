@@ -92,10 +92,12 @@ class RoadMap extends React.Component {
 	}
 
 	launch(i) {
-		if(this.state.playing && i < this.state.drills.length) {
-			bip(this.refs.beep)
+		const l = this.state.drills.length
+		bip(this.refs.beep)
+		if(this.state.playing && i < l) {
 			const drill = this.state.drills[i]
-			this.props.start(drill.duration, () => this.countdown(drill.pause, () => this.launch(i + 1)))
+			const suite = () => this.countdown(drill.pause, () => this.launch(i + 1))
+			this.props.start(drill.duration, i >= l - 1 ? () => this.launch(i + 1) : suite)
 			this.setState({selected: i})
 		}
 		else {
