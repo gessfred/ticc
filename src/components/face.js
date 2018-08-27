@@ -146,11 +146,8 @@ class Face extends React.Component {
 	}
 
 	count(count, callback) {
-		this.setState({count: count, currentTime: -1})
-		setTimeout(() => {
-			this.setState({count: -1})
-			callback()
-		}, 1000)
+		this.setState({count: count, currentTime: -1}, () => setTimeout(() => this.setState({count: -1}, callback), 1000))
+
 	}
 
 	start(time, callback) {
@@ -159,10 +156,10 @@ class Face extends React.Component {
 	}
 
 	execute(time, callback) {
-		this.setState({currentTime: this.state.time - time})
+		this.setState({currentTime: this.state.time - time, editable: false})
 		if(time >= 0 && !this.state.aborted) setTimeout((t) => this.execute(t, callback), 50, time - 0.05)
 		else {
-			this.setState({currentTime: -1, aborted:false, time:this.props.time})
+			this.setState({currentTime: -1, aborted:false, time:this.props.time, editable: true})
 			callback()
 		}
 	}
@@ -172,7 +169,7 @@ class Face extends React.Component {
 	}
 
 	abort() {
-		this.setState({aborted:true, editable: true, time: this.props.time})
+		this.setState({aborted:true, editable: true, time: this.props.time, count: -1})
 	}
 
 	timeSelected() {

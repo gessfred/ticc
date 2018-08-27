@@ -213,3 +213,34 @@ p {
 
 	background: #ca2c43;
 }
+
+.states {
+	display: block;
+	height: 50px;
+	width: 600px;
+	margin: auto;
+}
+
+.nowState {
+	font-size: 36px;
+	width: 200px;
+	color: white;
+}
+
+.state {
+	font-size: 20px;
+	border: 10px solid black;
+	width: 180px;
+
+	color: lightgray;
+}
+
+.nowState, .state {
+	font-weight: bold;
+	font-family: 'VAG Rounded';/*Verdana*/
+
+	height: 50px;
+	text-align: center;
+	margin: auto;
+	display: inline-block;
+}

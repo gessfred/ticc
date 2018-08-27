@@ -14,6 +14,14 @@ function bip(sound) {
 	})
 }
 
+const States = (props) => (
+	<div className='states'>
+		<div className='state'>{props.before}</div>
+		<div className='nowState'>{props.now}</div>
+		<div className='state'>{props.after}</div>
+	</div>
+)
+
 class RoadMap extends React.Component {
 	constructor(props) {
 		super(props)
@@ -80,25 +88,24 @@ class RoadMap extends React.Component {
 	}
 
 	start() {
-		this.setState({playing: true})
-		this.countdown(3, () => this.launch(0))
+		this.setState({playing: true}, () => this.countdown(3, () => this.launch(0)))
 	}
 
 	launch(i) {
-		if(!this.state.aborted && i < this.state.drills.length) {
+		if(this.state.playing && i < this.state.drills.length) {
 			bip(this.refs.beep)
 			const drill = this.state.drills[i]
 			this.props.start(drill.duration, () => this.countdown(drill.pause, () => this.launch(i + 1)))
 			this.setState({selected: i})
 		}
 		else {
-			this.setState({aborted:false, playing: false})
+			this.setState({playing: false, selected: -1})
 			this.props.stop()
 		}
 	}
 
 	countdown(count, callback) {
-		if(count > 0 && !this.state.aborted) {
+		if(count > 0 && this.state.playing) {
 			bip(this.refs.beep)
 			this.props.count(count, () => this.countdown(count - 1, callback))
 		}
@@ -106,7 +113,7 @@ class RoadMap extends React.Component {
 	}
 
 	abort() {
-		this.setState({selected: -1, aborted: true, playing: false})
+		this.setState({selected: -1, playing: false})
 	}
 
 	componentDidMount() {
@@ -149,6 +156,21 @@ class RoadMap extends React.Component {
 		this.setState({clearable: yes})
 	}
 
+	before() {
+		const sel = this.state.selected
+		return sel > 0 ? this.state.drills[sel - 1].name : 'start'
+	}
+
+	now() {
+		const sel = this.state.selected
+		return sel >= 0 && sel < this.state.drills.length ? this.state.drills[sel].name : 'now'
+	}
+
+	after() {
+		const sel = this.state.selected, d = this.state.drills
+		return sel < d.length - 1 ? this.state.drills[sel + 1].name : 'end'
+	}
+
 	render() {
 		return (
 			<div>
@@ -160,11 +182,7 @@ class RoadMap extends React.Component {
 					className='roadmap'
 				/>
 				{this.state.playing ?
-					<div className='wostates'>
-						<div className='prevState'></div>
-						<div className='wostate'></div>
-						<div className='nextstate'></div>
-					</div>
+					<States before={this.before()} now={this.now()} after={this.after()}/>
 					: <input
 					ref='title'
 					type='button'
