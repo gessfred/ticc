@@ -24,7 +24,8 @@ class RoadMap extends React.Component {
 			selected: -1,
 			hovered: -1,
 			aborted: false,
-			clearable: false
+			clearable: false,
+			playing: false
 		}
 	}
 
@@ -79,6 +80,7 @@ class RoadMap extends React.Component {
 	}
 
 	start() {
+		this.setState({playing: true})
 		this.countdown(3, () => this.launch(0))
 	}
 
@@ -90,7 +92,7 @@ class RoadMap extends React.Component {
 			this.setState({selected: i})
 		}
 		else {
-			this.setState({aborted:false})
+			this.setState({aborted:false, playing: false})
 			this.props.stop()
 		}
 	}
@@ -104,8 +106,7 @@ class RoadMap extends React.Component {
 	}
 
 	abort() {
-		console.log('stop')
-		this.setState({selected: -1, aborted: true})
+		this.setState({selected: -1, aborted: true, playing: false})
 	}
 
 	componentDidMount() {
@@ -158,7 +159,13 @@ class RoadMap extends React.Component {
 					onMouseMove={(e) => this.hovered(e)}
 					className='roadmap'
 				/>
-				<input
+				{this.state.playing ?
+					<div className='wostates'>
+						<div className='prevState'></div>
+						<div className='wostate'></div>
+						<div className='nextstate'></div>
+					</div>
+					: <input
 					ref='title'
 					type='button'
 					value={this.toString()}
@@ -166,7 +173,7 @@ class RoadMap extends React.Component {
 					onMouseMove={(e) => this.clearable(true)}
 					onMouseLeave={(e) => this.clearable(false)}
 					className='selected'
-				/>
+				/>}
 				<audio src='https://soundbible.com/grab.php?id=1815&type=mp3' ref='beep'/>
 			</div>
 

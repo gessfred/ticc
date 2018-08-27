@@ -30,7 +30,7 @@ class Face extends React.Component {
 	}
 
 	y() {
-		return this.state.size/3
+		return (this.state.size - this.height - this.offset)/2
 	}
 
 	componentDidMount() {

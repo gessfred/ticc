@@ -164,21 +164,17 @@ class App extends React.Component {
 							<FontAwesomeIcon icon={faSave}/>
 						</button>
 					</div>
-
 					<Face ref={(face) => this.face = face} time={300} size={400}/>
-					<Picker dpick={(i) => this.setState({pause: i})} pick={this.state.pause}/>
+					{this.state.playing ? <div/> : <Picker dpick={(i) => this.setState({pause: i})} pick={this.state.pause}/>}
 					<RoadMap ref={(map) => this.map = map} stop={() => this.stop()} start={(t, c) => this.face.start(t, c)} count={(c, cb) => this.face.count(c, cb)} width={500} height={50}/>
-
-
-
-							<button
-								ref='play'
-								onClick={() => this.toggle()}
-								display='none'
-								className='play'
-								>
-								<FontAwesomeIcon icon={this.state.playing ? faStop : faPlay} />
-							</button>
+					<button
+						ref='play'
+						onClick={() => this.toggle()}
+						display='none'
+						className='play'
+						>
+						<FontAwesomeIcon icon={this.state.playing ? faStop : faPlay} />
+					</button>
 				</div>
 			</div>
     );
