@@ -74,7 +74,7 @@ p {
 	height: 25px;
 	font-size: 100%;
 	text-align: center;
-	background-color: black;
+	background-color: #181717;
 	color: white;
 	border: 1px solid white;
 	border-radius: 10px;
@@ -83,7 +83,7 @@ p {
 
 .topnav {
 	width: 100%;
-	background: gray;
+	background: #181717;
 	height: 40px;
 	top: 0;
 	left: 0;
@@ -177,7 +177,7 @@ p {
 }
 
 .menu:hover, .topnavsave:hover {
-	background-color: gray;
+	background-color: #181717;
 }
 
 .picker {
@@ -201,7 +201,7 @@ p {
 
 .pick {
 	border: none;
-	background: gray;
+	background: #181717;
 }
 
 .pick:hover {
