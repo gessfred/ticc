@@ -116,6 +116,7 @@ p {
 	width: 400px;
 	display: block;
 	margin: auto;
+	margin-bottom: 8px;
 }
 
 .roadmap {
@@ -135,7 +136,7 @@ p {
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 16px;
-	margin-top: 30px;
+	margin-top: 16px;
 	display: block;
 	border-radius: 6px;
 }
